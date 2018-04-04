@@ -1,65 +1,86 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0 minimum-sacle=1.0">
-
-	<meta http-equiv="Content-Security-Policy" content="default-src *; script-src * 'unsafe-inline'; object-src *; style-src * 'unsafe-inline'; img-src *; media-src *; frame-src *; font-src *; connect-src *">
-
-
-	<script type="text/javascript" src="js/funciones.js"></script>
-
-	<link href="https://fonts.googleapis.com/css?family=Amatic+SC" rel="stylesheet">
-
-	<link href="http://fonts.googleapis.com/css?family=Tangerine" rel="stylesheet" type="text/css" />
-
-	<title>Make-Up Me</title>
-
-
-	<!--ESTILO LOCAL-->
-	<link rel="stylesheet" type="text/css" href="css/estilo.css">
-	<!--JQUERY-->
-	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-	<!--BOOTSTRAP CSS-->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <!--BOOTSTRAP JS-->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-    <!--POPPER JS-->
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0 minimum-sacle=1.0">
+    <script type="text/javascript" src="js/funciones.js"></script>
+    <script type="text/javascript" src="js/slider.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/navBar.css">
+    <link rel="stylesheet" type="text/css" href="css/estilo.css">
+    <link rel="stylesheet" type="text/css" href="css/slider.css">
+    <link rel="stylesheet" type="text/css" href="css/fonts/Amatic/amatic_font.css">
+    <title>Make-Up Me</title>
 </head>
-<body>
-	<nav class="navbar navbar-expand-lg navbar-light bg-light" style="z-index: 99999999999999999;">
-		<a class="navbar-brand" href="#" id="tituloNav">Make-Up Me®</a>
-		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-	    <span class="navbar-toggler-icon"></span>
-	  	</button>
-		<div class="collapse navbar-collapse" id="navbarSupportedContent">
-		    <ul class="navbar-nav mr-auto">
-		    	<li class="nav-item">
-		    		<b><a class="nav-link" href="inicio.html">Inicio</a></b>
-		    	</li>
-		    	<li class="nav-item">
-		        	<b><a class="nav-link" onclick="tips();" style="cursor: pointer;">Tips de maquillaje</a></b>
-		    	</li>
-		     	<li class="nav-item">
-		        	<b><a class="nav-link" onclick="ubica();" style="cursor: pointer;">Ubica a tu estilista más cercano</a></b>
-		      	</li>
-		      	<li class="nav-item">
-		        	<b><a class="nav-link" href="index.html" id="logOut">Cerrar sesión</a></b>
-		      	</li>
-		    </ul>
-	  </div>
-	</nav>
-	<section class="margen" style="margin-top: 10%; margin-bottom: 10%;">
-		<div class="text-center"><br><br><br>
- 			<img src="images/ojo.png" width="300px;" class="rounded"><br><br>
- 			<blockquote class="blockquote">
-			  	<b><p class="mb-0" id="frase">"Define el éxito en tus propios términos, consíguelo por tus propias reglas y construye una vida de la que estés orgullosa"</p></b>
-				<footer class="blockquote-footer">Anne Sweeney <cite title="Source Title">(presidenta de Disney)</cite></footer>
-			</blockquote>
-		</div>
-	</section><br>
-	<article></article>
 
+<body onload="getNombre();">
+    <p class="logoApp" onclick="redireccion2();">Make-Up Me®</p>
+    <nav style="z-index: 99999999999999999;">
+        <div class="topnav" id="myTopnav">
+            <b><a onclick="tips();" style="cursor: pointer;" class="navLink">Tips de maquillaje</a></b>
+            <b><a onclick="ubica();" style="cursor: pointer;" class="navLink">Ubica a tu estilista más cercano</a></b>
+            <b><a onclick="redireccion3();" style="cursor: pointer;" class="navLink">App Premium</a></b>
+            <b><a onclick="redireccion1();" style="cursor: pointer;" class="navLink">Acerca de nosotros</a></b>
+            <b><a href="index.html" id="logOut" style="cursor: pointer;" class="navLink">Cerrar sesión</a></b>
+            <a href="javascript:void(0);" style="font-size:15px;" class="icon" onclick="nav();">&#9776;</a>
+        </div>
+    </nav>
+    <div>
+        
+        <section class="margen" style="margin-top: 10%; margin-bottom: 10%;">
+            <div class="borrar">
+                <div class="bienvenido">
+                    <center>
+                        <h1 style="letter-spacing: 1.5pt;"></h1>
+                    </center>
+                </div>
+                <div class="w3-content w3-display-container">
+                    <div>
+                        <div class="w3-display-container mySlides" style="display: block;">
+                            <img src="images/slide1.jpg" style="width:100%; display='none'">
+                            <div class="w3-display-bottomleft w3-large w3-container w3-padding-16 w3-black">
+                                Los mejores tips
+                            </div>
+                        </div>
+                        <div class="w3-display-container mySlides" style="display: none;">
+                            <img src="images/slide2.jpg" style="width:100%; display='none'">
+                            <div class="w3-display-bottomright w3-large w3-container w3-padding-16 w3-black">
+                                Los estilistas más calificados
+                            </div>
+                        </div>
+                        <div class="w3-display-container mySlides" style="display: none;">
+                            <img src="images/slide3.jpg" style="width:100%; display='none'">
+                            <div class="w3-display-topleft w3-large w3-container w3-padding-16 w3-black">
+                                Todo con un simple click
+                            </div>
+                        </div>
+                        <div class="w3-display-container mySlides" style="display: none;">
+                            <img src="images/slide4.jpg" style="width:100%; display='none'">
+                            <div class="w3-display-topright w3-large w3-container w3-padding-16 w3-black">
+                                Aquí en MakeUp - Me
+                            </div>
+                        </div>
+                        <button class="w3-button w3-display-left w3-black" onclick="plusDivs(-1)">&#10094;</button>
+                        <button class="w3-button w3-display-right w3-black" onclick="plusDivs(1)">&#10095;</button>
+                    </div>
+                </div>
+                <div style="margin-top: 10%;">
+                    <dl>
+                        <dt>Los mejores tips a la mano</dt>
+                        <dd>---&#10095; Dados por profesionales</dd>
+                        <dd>---&#10095; Comprobados en su totalidad</dd>
+                        <dd>---&#10095; En constante actualización</dd>
+                        <dt>Los profesionales trabajan con nosotros</dt>
+                        <dd>---&#10095; Dedicación máxima</dd>
+                        <dd>---&#10095; Disposición</dd>
+                        <dd>---&#10095; Todo a un simple click</dd>
+                    </dl>
+                </div>
+            </div>
+        </section>
+    </div>
+    <br>
+    <article></article>
 </body>
+
 </html>
