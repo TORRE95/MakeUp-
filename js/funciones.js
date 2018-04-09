@@ -4,7 +4,7 @@ function inicioSesion() {
     var pass = document.getElementById('pass').value;
     if (mail != "" && pass != "") {
         inicioAjax = new XMLHttpRequest();
-        inicioAjax.open('POST', "php/selectUsuarios.php");
+        inicioAjax.open('POST', "https://make-upapp.000webhostapp.com/selectUsuarios.php");
         inicioAjax.send();
         inicioAjax.onreadystatechange = function() {
             if (inicioAjax.readyState == 4 && inicioAjax.status == 200) {
@@ -12,7 +12,7 @@ function inicioSesion() {
                 for (var i = 0; i < inicio.length; i++) {
 
                     if (mail == inicio[i].correo && pass == inicio[i].pass) {
-                        sessionStorage.setItem("nombre", inicio[i].nombre);
+                        localStorage.setItem("nombre", inicio[i].nombre);
                         location.href = "app.html";
                         break;
                     } else {
@@ -61,34 +61,38 @@ function add2() {
     }
 }
 
-
 function registrar() {
     var nombre = document.getElementById("nombre").value;
-    var apellidos = document.getElementById("apellidos").value;
+    var ape = document.getElementById("apellidos").value;
     var mail = document.getElementById("mailR").value;
     var pass1 = document.getElementById("pass1").value;
     var pass2 = document.getElementById("pass2").value;
-    if (nombre != "" && mail != "" && pass1 != "" && pass2 != "" && apellidos != "") {
+    var url = "https://make-upapp.000webhostapp.com/registrarUsuarios.php?nombre="+nombre+"&mail="+mail+"&pass1="+pass1+"&apellidos="+ape;
+    if (nombre != "" && mail != "" && pass1 != "" && pass2 != "" && ape != "") {
         if (pass1 == pass2) {
             registroAjax = new XMLHttpRequest();
-            registroAjax.open('GET', "php/registrarUsuarios.php?nombre=" + nombre + "&mail=" + mail + "&pass1=" + pass1 + "&apellidos" + apellidos);
+            registroAjax.open('GET', url);
             registroAjax.send();
             registroAjax.onreadystatechange = function() {
                 if (registroAjax.readyState == 4 && registroAjax.status == 200) {
 
                     if (registroAjax.responseText == "1") {
-                        console.log(registroAjax.responseText);
-                        sessionStorage.setItem("nombre", nombre);
-                        location.href = "app.html";
+                        alert("iniciando sesión");
+                       localStorage.setItem("nombre", nombre);
+                       window.location = "app.html";
+                    }else{
+                        console.log("Error inesperado, intente más tarde");
                     }
                 }
             }
+        }else{
+            alert("Error, las contraseñas no coinciden")
         }
     }
 }
 
 function getNombre() {
-    var div = "Bienvenido " + sessionStorage.getItem('nombre');
+    var div = "Bienvenido " + localStorage.getItem('nombre');
     document.querySelector('h1').innerHTML = div;
 
 }
@@ -132,7 +136,7 @@ function noBack() {
 
 function tips() {
     var section =
-        "<center><b><p id='grande'>TIPS</p></b></center>" +
+        "<center><b><p id='grande' style='color: #DCBCAD;'>TIPS</p></b></center>" +
         "<center>" +
         "<div class='video'>" +
         "<iframe width='90%' height='180px' src='https://www.youtube.com/embed/4NhTfaHXCaQ' " +
@@ -144,15 +148,15 @@ function tips() {
         "<ul>" +
         "<li class='media'>" +
         "<div style='margin-botom: 10%;'>" +
-        "<b><p align='justify' id='grande' style='margin-botom: 2%;'>Quema con un encendedor la punta del delineador de ojos</p></b>" +
-        "<p align='justify' id='tips'>Agarra tu lápiz delineador de ojos y con ayuda de un encendedor coloca la llama en la punta por un segundo, deja que se enfríe un poco y notarás el cambio en su consistencia. Además, así es menos probable que el trazo se corra.</p>" +
+        "<b><p align='justify' id='grande' style='margin-botom: 2%; color: #DCBCAD;'>Quema con un encendedor la punta del delineador de ojos</p></b>" +
+        "<p align='justify' id='tips' style='color: white;'>Agarra tu lápiz delineador de ojos y con ayuda de un encendedor coloca la llama en la punta por un segundo, deja que se enfríe un poco y notarás el cambio en su consistencia. Además, así es menos probable que el trazo se corra.</p>" +
         "</div>" +
         "</li>" +
         "<img src='images/Make-up-3.webp' width='200px' height='150px' alt='1'><li><br></li>" +
         "<li>" +
         "<div style='margin-botom: 10%;'>" +
-        "<b><p align='justify'  id='grande' style='margin-botom: 2%;'>Si quieres que tu sombras resalten, pinta primero tu párpado con delineador blanco</p></b>" +
-        "<p align='justify' id='tips'>Para que la sombra de ojos destaque, toma un lápiz delineador de color blanco y rellena tus párpados. El tono opaco del blanco hará más intenso cualquier color de sombra que apliques.</p>" +
+        "<b><p align='justify'  id='grande' style='margin-botom: 2%; color: #DCBCAD;'>Si quieres que tu sombras resalten, pinta primero tu párpado con delineador blanco</p></b>" +
+        "<p align='justify' id='tips' style='color: white;'>Para que la sombra de ojos destaque, toma un lápiz delineador de color blanco y rellena tus párpados. El tono opaco del blanco hará más intenso cualquier color de sombra que apliques.</p>" +
         "</div>" +
         "</li>" +
         "<img src='images/3.webp' width='200px' height='150px' alt='2'><li><br></li>" +
@@ -185,7 +189,7 @@ function ubica() {
     document.querySelector("div.borrar").innerHTML = borrar;
     var estilista;
     estilista = new XMLHttpRequest();
-    estilista.open('POST', "http://make-upapp.000webhostapp.com/selectEstilistas.php");
+    estilista.open('POST', "https://make-upapp.000webhostapp.com/selectEstilistas.php");
     estilista.send();
     estilista.onreadystatechange = function() {
         if (estilista.readyState == 4 && estilista.status == 200) {
@@ -199,9 +203,9 @@ function ubica() {
                     "<img src='" + datos[i].foto + "' width='230px' height='200px' alt='imgEstilista' style='" +
                     "border-radius: 20px;'>" +
                     "<div>" +
-                    "<h3>" + datos[i].nombre + "</h3>" +
+                    "<h3 style='color: #DCBCAD;'>" + datos[i].nombre + "</h3>" +
                     "<input type='hidden' value='" + datos[i].idEstilista + "' id='idEst'>" +
-                    "<h6>A " + datos[i].distancia + "km de ti</h6>" +
+                    "<h6 style='color: white;'>A " + datos[i].distancia + "km de ti</h6>" +
                     "<button onclick='verPerfil(" + datos[i].idEstilista + ");' class='btnVerPerfil'>Ver perfil</button>" +
                     "<div>" +
                     "</li><br>" +
@@ -217,7 +221,7 @@ function ubica() {
 function verPerfil(id) {
     var perfilEst;
     perfilEst = new XMLHttpRequest();
-    perfilEst.open('POST', "http://make-upapp.000webhostapp.com/selectEstilistas.php");
+    perfilEst.open('POST', "https://make-upapp.000webhostapp.com/selectEstilistas.php");
     perfilEst.send();
     perfilEst.onreadystatechange = function() {
         if (perfilEst.readyState == 4 && perfilEst.status == 200) {
@@ -228,13 +232,13 @@ function verPerfil(id) {
                         "<div>" +
                         "<center>" +
                         "<img src='" + datosEstilista[i].foto + "' alt='1' width='230px' height='200px' id='imgPerfil'><br>" +
-                        "<b><h3>" + datosEstilista[i].nombre + "</h3>" +
-                        "<b><h3>" + datosEstilista[i].nombreTienda + "</h3>" +
-                        "<h5>" + datosEstilista[i].ubicacion + ", a " + datos[i].distancia + "km de ti</h5></center>" +
-                        "<p id='descripcion' align='justify'>" + datosEstilista[i].descripcion + "</p>" +
-                        "<h6>Contacto: </h6>" +
-                        "<b><h3 style='font-size: 18px;'>" + datosEstilista[i].contacto + "</h3>" +
-                        "<center><p class='calificacion'>Calificación: " + datosEstilista[i].calificacion + " / 5</p></b>" +
+                        "<b><h2 style='color: #B29600;'>" + datosEstilista[i].nombre + "</h2>" +
+                        "<b><h3 style='color: #B29600; font-style: italic;'>" + datosEstilista[i].nombreTienda + "</h3>" +
+                        "<h5 style='color: white;'>" + datosEstilista[i].ubicacion + ", a " + datos[i].distancia + "km de ti</h5></center>" +
+                        "<p id='descripcion' align='justify' style='color: white;'>" + datosEstilista[i].descripcion + "</p>" +
+                        "<h6 style='color: white;'>Contacto: </h6>" +
+                        "<b><a href = 'http://"+datosEstilista[i].contacto+"'><h3 style='font-size: 18px; color: #DCBCAD;'>FAEBOOK</h3></a>" +
+                        "<center><p class='calificacion' style='color: #B29600;'>Calificación: " + datosEstilista[i].calificacion + " / 5.0</p></b>" +
                         
 
                     "</center>" +
@@ -242,7 +246,7 @@ function verPerfil(id) {
                     "<div class='dropdown'>" +
                     "<button onclick='agendar()' class='dropbtn' style='letter-spacing: 1.1pt; border-radius: 18px;'" +
                     "'>Agendar cita</button>" +
-                    "<button onclick='llamar()' class='dropbtn' style='letter-spacing: 1.1pt; border-radius: 18px;'" +
+                    "<button  type='button' onclick='llamar()' class='dropbtn' style='letter-spacing: 1.1pt; border-radius: 18px;'" +
                     "'>Llamar</button>" +
                     "<div id='myDropdown' class='dropdown-content'>" +
                     "<div>" +
@@ -273,7 +277,7 @@ function agendar() {
 }
 
 function llamar(){
-	window.location.href = "tel:+5214111171009";
+	window.location.href = "skype:torre.wz";
 }
 // Close the dropdown if the user clicks outside of it
 window.onclick = function(event) {
@@ -294,13 +298,13 @@ function tarjetas() {
         "<div>" +
         "<label>" +
         "<p class='txtNombreTarjeta'>Nombre del titular de la tarjeta</p>" +
-        "<input type='text' id='nombreTarjeta' required placeholder='Nombre del titular'>" +
+        "<input type='text' id='nombreTarjeta' required >" +
         "</label>" +
         "</div>" +
         "<div>" +
         "<label>" +
         "<p class='txtNumTarjeta'>Número de tarjeta</p>" +
-        "<input type='number' id='numTarjeta' placeholder='16 dígitos' required>" +
+        "<input type='number' id='numTarjeta'  required>" +
         "</label>" +
         "</div>" +
         "<div>" +
@@ -336,7 +340,7 @@ function tarjetas() {
         "</div>" +
         "<div>" +
         "<label>" +
-        "<p class='txtCV'>Código de Seguridad: </p><input type='number' id='cv' placeholder='3 dígitos' max='999' min='001'>" +
+        "<p class='txtCV'>Código de Seguridad: </p><input type='number' id='cv' max='999' min='001'>" +
         "</label>" +
         "</div>" +
         "<div>" +
@@ -371,7 +375,7 @@ function efectivo() {
         "<center><h2 style='font-size: 30px; margin-bottom: 10%; letter-spacing: 2pt;'>Efectivo</h2></center>" +
         " <p class='txtEfectivo' style='letter-spacing: 2pt;'>Una vez pagado el servicio que requieres de Make-up-me" +
         " en tu establecimiento preferido, tendrás que ingresar el código de barras para validar el pago.</p>" +
-        "<input type='number' placeholder='Número del código de barras' class='numCB'><br>" +
+        "<input type='number' class='numCB'><br>" +
         "<center><button onclick='redireccion2()' class='button'>Continuar</button></center>" +
         "</center>";
     document.querySelector('section').innerHTML = section;
