@@ -277,7 +277,7 @@ function agendar() {
 }
 
 function llamar(){
-	window.location.href = "skype:torre.wz";
+	window.location.href = "skype:live:torrewz?call";
 }
 // Close the dropdown if the user clicks outside of it
 window.onclick = function(event) {
