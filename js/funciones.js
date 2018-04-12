@@ -137,11 +137,7 @@ function noBack() {
 function tips() {
     var section =
         "<center><b><p id='grande' style='color: #DCBCAD;'>TIPS</p></b></center>" +
-        "<center>" +
-        "<div class='video'>" +
-        "<iframe width='90%' height='180px' src='https://www.youtube.com/embed/4NhTfaHXCaQ' " +
-        "frameborder='0' allow='autoplay; encrypted-media' allowfullscreen style='margin-bottom: 10%;'></iframe>" +
-        "</div>" +
+        "<center>"+
         "</center>" +
         "<div id='margen'>" +
         "<div>" +
@@ -171,8 +167,6 @@ function tips() {
         "</div>" +
         "</div>";
     document.querySelector('section').innerHTML = section;
-    var nav = document.getElementById('navbarSupportedContent');
-    nav.className = "collapse navbar-collapse";
 }
 
 function ubica2() {
@@ -183,11 +177,12 @@ function ubica2() {
 function ubica() {
 
 
-    var cerca = "<center><p class='cerca'>Estilistas cerca de ti: </p></center>";
+    /*var cerca = "<center><p class='cerca'>Estilistas cerca de ti: </p></center>";
     document.querySelector("h1").innerHTML = cerca;
     var borrar = "";
     document.querySelector("div.borrar").innerHTML = borrar;
-    var estilista;
+    var estilista;*/
+    document.querySelector('section').innerHTML = "";
     estilista = new XMLHttpRequest();
     estilista.open('POST', "https://make-upapp.000webhostapp.com/selectEstilistas.php");
     estilista.send();
@@ -239,7 +234,8 @@ function verPerfil(id) {
                         "<h6 style='color: white;'>Contacto: </h6>" +
                         "<b><a href = 'http://"+datosEstilista[i].contacto+"'><h3 style='font-size: 18px; color: #DCBCAD;'>FAEBOOK</h3></a>" +
                         "<center><p class='calificacion' style='color: #B29600;'>Calificación: " + datosEstilista[i].calificacion + " / 5.0</p></b>" +
-                        
+                        "<h3>Galería</h3><br>"+
+                        "<center><img id= 'prueba' src='images/"+datosEstilista[i].nombre+"1.jpg'><img id= 'prueba' src='images/"+datosEstilista[i].nombre+"2.jpg'></center>"+
 
                     "</center>" +
                     "<div>" +

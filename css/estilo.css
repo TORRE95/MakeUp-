@@ -615,3 +615,9 @@ dd{
 #SkypeButton_Call_TORRE95_1{
     position: relative;
 }
+
+#prueba{
+    position: relative;
+    width: 80%;
+    margin: 10px;
+}
